@@ -5,11 +5,13 @@ import MyOrder from '../MyOrder';
 import MyOrders from '../MyOrders';
 import NotFound from '../NotFound';
 import SignIn from '../SignIn';
+import Search from '../Search';
 
 
 const AppRoutes = () => {
     let routes = useRoutes([
         {path: '/', element: <Home/>},
+        {path: '/search', element: <Search/>},
         {path: '/my-account', element: <MyAccount/>},
         {path: '/my-order', element: <MyOrder/>},
         {path: '/my-orders', element: <MyOrders/>},

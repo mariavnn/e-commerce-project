@@ -1,11 +1,11 @@
 import Layout from "../../components/LayOut"
 
-function MyOrder() {
+function Search() {
   return (
     <Layout>
-      <p>My Order</p>
+      <p>Search</p>
     </Layout>
   )
 }
 
-export default MyOrder
+export default Search

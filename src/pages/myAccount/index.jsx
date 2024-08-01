@@ -1,9 +1,10 @@
+import Layout from "../../components/LayOut"
 
 function MyAccount() {
   return (
-    <div>
+   <Layout>
       <p>My Account</p>
-    </div>
+   </Layout>
   )
 }
 
