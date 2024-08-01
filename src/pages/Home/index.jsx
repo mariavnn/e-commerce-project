@@ -1,6 +1,6 @@
 function Home() {
   return (
-    <div>
+    <div className="bg-pink-300">
       <p>Home</p>
     </div>
   )
