@@ -1,0 +1,10 @@
+.product-detail{
+    width: 360px;
+    height: 70vh;
+}
+
+@media (min-width: 640px) {
+    .product-detail{
+        height: 90vh;
+    }
+}

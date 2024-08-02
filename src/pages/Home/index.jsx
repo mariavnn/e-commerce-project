@@ -3,7 +3,7 @@ import Card from "../../components/Card"
 import Layout from "../../components/LayOut"
 import Preview from "../../components/Preview";
 import CategoryButton from "../../components/CategoryButtons";
-// import CategoryButton from "../../components/CategoryButtons";
+import ProductDetail from "../../components/ProductDetail";
 
 function Home() {
   const [items, setItems] = useState(null);
@@ -44,7 +44,7 @@ function Home() {
           ))
         }
       </div>
-     
+      <ProductDetail/>
     </Layout>
   )
 }

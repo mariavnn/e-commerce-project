@@ -1,9 +1,25 @@
 /* eslint-disable react/prop-types */
 
+import React from "react"
+import { ShoppingCartContext } from "../../context/ShoppingCardContext"
+
 function Card({ data }) {
-  return (
+    const {
+        count, 
+        setCount, 
+        openProductDetail, 
+        setProductToShow
+    } = React.useContext(ShoppingCartContext);
+    
+
+    const showProduct = (productInfo) => {
+        openProductDetail();
+        setProductToShow(productInfo);
+    }
+   
+    return (
     <div className="bg-white cursor-pointer w-56 h-68 rounded-lg mb-10 p-">
-        <figure className="relative mb-3 w-full h-4/5">
+        <figure className="relative mb-3 w-full h-4/5" onClick={() => showProduct(data)}>
             <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-1.5 py-0.5">{data.category}</span>
             <img className="w-full h-full object-cover rounded-lg" src={data.image} alt={data.title}></img>
             <div className="absolute top-0 right-0 flex justify-center items-center bg-transparente w-6 h-6 rounded-full m-2">
@@ -18,8 +34,10 @@ function Card({ data }) {
         </figure>
         <p className="">
             <div className="flex justify-between">
-                <span className="text-sm font-light">{data.title}</span>
-                <div className="w-6 h-6 flex justify-center items-center">
+                <span className="text-sm font-light" onClick={() => showProduct(data)}>{data.title}</span>
+                {/* ADD ITEM TO THE SHOPPING CARD */}
+                <div className="w-6 h-6 flex justify-center items-center" 
+                    onClick={() => setCount(count + 1)}>
                     <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11 8C11 7.44772 11.4477 7 12 7C12.5523 7 13 7.44772 13 8V11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H13V16C13 16.5523 12.5523 17 12 17C11.4477 17 11 16.5523 11 16V13H8C7.44771 13 7 12.5523 7 12C7 11.4477 7.44772 11 8 11H11V8Z" fill="#0F0F0F"/>
                         <path fillRule="evenodd" clipRule="evenodd" d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z" fill="#0F0F0F"/>
@@ -27,7 +45,7 @@ function Card({ data }) {
                 </div>
             </div>
             
-            <span className="text-lg font-bold bg-amber-400/50 rounded-full px-3">{data.price}$</span>
+            <span className="text-lg font-bold bg-amber-400/50 rounded-full px-3"  onClick={() => showProduct(data)}>{data.price}$</span>
         </p>
       
     </div>
