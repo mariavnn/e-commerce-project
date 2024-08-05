@@ -5,17 +5,16 @@ const ShoppingCartContext = React.createContext();
 
 function ShoppingCartProvider({ children }){
     const [count, setCount] = useState(0);
-    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
-
+    const [cartProducts, setCartProducts] = useState([]);
     const [productToShow, setProductToShow] = useState({})
 
-    const openProductDetail = () => {
-        setIsProductDetailOpen(true);
-    }
+    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+    const openProductDetail = () => setIsProductDetailOpen(true);
+    const closeProductDetail = () => setIsProductDetailOpen(false);
 
-    const closeProductDetail = () => {
-        setIsProductDetailOpen(false);
-    }
+    const [isCheckoutMenuOpen, setIsCheckoutMenuOpen] = useState(false);
+    const openCheckoutMenu = () => setIsCheckoutMenuOpen(true);
+    const closeCheckoutMenu = () => setIsCheckoutMenuOpen(false);
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -25,7 +24,12 @@ function ShoppingCartProvider({ children }){
             openProductDetail,
             closeProductDetail,
             productToShow, 
-            setProductToShow
+            setProductToShow,
+            cartProducts, 
+            setCartProducts,
+            isCheckoutMenuOpen,
+            openCheckoutMenu, 
+            closeCheckoutMenu
         }}>
             {children}
         </ShoppingCartContext.Provider>

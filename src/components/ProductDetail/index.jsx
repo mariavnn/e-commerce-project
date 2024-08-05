@@ -4,9 +4,10 @@ import './styles.css';
 
 function ProductDetail() {
     const {isProductDetailOpen, closeProductDetail, productToShow, count, setCount} = React.useContext(ShoppingCartContext);
-    console.log(`product To show ${productToShow}`)
+    
   return (
-   <aside className={`${isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex flex-col fixed bottom-10 bg-white border border-black rounded-lg`}>
+   
+   <aside className={`${isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex-col fixed bottom-10 bg-white border border-black rounded-lg lg:right-0 mr-2`}>
         <div className='flex justify-between items-center px-5 py-3'>
             <h2 className='font-bold text-2xl'>Product Detail</h2>
             <div onClick={() => closeProductDetail()}>
@@ -19,14 +20,14 @@ function ProductDetail() {
             <div className='w-80 h-72 mb-2 lg:h-80'>
                 <img className='w-full h-full object-fill' src={productToShow.image} alt={productToShow.title} />
             </div>
-            <div className='flex p-2 gap-12 h-24  w-full lg:mt-2'>
+            <div className='flex p-2 gap-12 h-20 mt-5 mb-2 w-full lg:mt-2 lg:h-20'>
                 <h1 className='w-4/6 '>{productToShow.title}</h1>
-                <span  className="text-lg font-bold bg-amber-400/50 rounded-full h-10 flex justify-center items-center px-3">{productToShow.price}</span>
+                <span  className="text-lg font-bold bg-amber-400/50 rounded-full h-10 flex justify-center items-center px-3">{productToShow.price}$</span>
             </div>   
         </figure>
        
         <button 
-            className="text-lg text-white font-bold bg-black rounded-full h-10 flex justify-center items-center px-3 mx-4" 
+            className="text-lg text-white font-bold bg-black rounded-full h-10 flex justify-center items-center px-3 mx-4 " 
             onClick={() => setCount(count + 1)}
         >Add to the shopping cart</button>
    </aside>

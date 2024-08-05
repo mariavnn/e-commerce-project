@@ -1,11 +1,11 @@
-.product-detail{
+.checkout-menu{
     width: 360px;
     height: 80vh;
    
 }
 
 @media (min-width: 640px) {
-    .product-detail{
+    .checkout-menu{
        height: calc(100vh - 80px);
        top: 72px;
     }
