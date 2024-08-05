@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { ShoppingCartContext } from '../../context/ShoppingCardContext';
 import './styles.css';
@@ -10,6 +11,7 @@ function CheckoutMenu() {
         isCheckoutMenuOpen,
         closeCheckoutMenu, 
         quantityProducts,
+        setQuantityProducts,
         count,
         setCount
     } = React.useContext(ShoppingCartContext);
@@ -21,9 +23,26 @@ function CheckoutMenu() {
 
     
     const handleDelete = (id) => {
-        const filterProducts = cartProducts.filter(product => product.id == id != id);
-        setCartProducts(filterProducts);
-        setCount(count - 1);
+        // const filterProducts = cartProducts.filter(product => product.id == id != id);
+        // const quantityToRemove = quantityProducts[id] || 0;
+        // setCartProducts(filterProducts);
+
+        // setCount(prevCount => Math.max(0, prevCount - quantityToRemove));
+        // setQuantityProducts(prevQuantities => {
+        //     const { [id]: _, ...rest } = prevQuantities;
+        //     return rest;
+        // });
+         
+        const updatedCartProducts = cartProducts.filter(product => product.id !== id);
+        const quantityToRemove = quantityProducts[id] || 0;
+        
+        setCartProducts(updatedCartProducts);
+        setQuantityProducts(prevQuantities => {
+            const { [id]: _, ...rest } = prevQuantities;
+            return rest;
+        });
+
+        setCount(prevCount => Math.max(0, prevCount - quantityToRemove));
     }
 
     return (
