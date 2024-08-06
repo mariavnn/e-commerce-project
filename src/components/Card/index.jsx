@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 
-import React from "react"
+import React, { useContext } from "react"
 import { ShoppingCartContext } from "../../context/ShoppingCardContext"
+import { LoadingContext } from "../../context/LoadingContext";
 
 function Card({ data }) {
     const {
@@ -12,12 +13,12 @@ function Card({ data }) {
         setProductToShow,
         cartProducts, 
         setCartProducts,
-        openCheckoutMenu,
         quantityProducts, 
-        setQuantityProducts
+        setQuantityProducts,
     } = React.useContext(ShoppingCartContext);
     const [iconChanged, setIconChange] = React.useState(false);
     
+    const{ startLoading, stopLoading } = useContext(LoadingContext);
 
     const showProduct = (productInfo) => {
         openProductDetail();
@@ -27,6 +28,9 @@ function Card({ data }) {
     const addProductToCart = (event, productData) => {
         event.stopPropagation();
         changeIcon();
+        startLoading();
+        console.log('Empezo el loading');
+
         const productIndex = cartProducts.findIndex(product => product.id === productData.id);
         let newCart = [...cartProducts];
     
@@ -42,8 +46,13 @@ function Card({ data }) {
             ...prevQuantities,
             [productData.id]: (prevQuantities[productData.id] || 0) + 1
         }));
-    
-        openCheckoutMenu();
+        
+        setTimeout(() =>{
+            stopLoading();
+            console.log('Termino el loading');
+        }, 5000);
+       
+        
         setCount(count + 1);
        
         closeProductDetail();
@@ -60,7 +69,6 @@ function Card({ data }) {
 
 
     const renderIcon = () => {
-       
         if(iconChanged){
             return(
                 <div className="h-8 flex justify-center items-center bg-gray-300/60 rounded-full px-1 ">

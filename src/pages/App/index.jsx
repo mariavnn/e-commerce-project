@@ -5,19 +5,23 @@ import NavBar from '../../components/NavBar'
 import './App.css'
 import Footer from '../../components/Footer';
 import CheckoutMenu from '../../components/CheckoutMenu';
+import { LoadingProvider } from '../../context/LoadingContext';
 
 
 
 const App = () => {
   return(
-    <ShoppingCartProvider>
-      <BrowserRouter>
-        <AppRoutes/>
-        <NavBar/>
-        <CheckoutMenu/>
-        <Footer/>
-      </BrowserRouter>
-    </ShoppingCartProvider>
+    <LoadingProvider>
+      <ShoppingCartProvider>
+        <BrowserRouter>
+          <AppRoutes/>
+          <NavBar/>
+          <CheckoutMenu/>
+          <Footer/>
+        </BrowserRouter>
+      </ShoppingCartProvider>
+    </LoadingProvider>
+    
    
   )
 }

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ShoppingCartContext } from '../../context/ShoppingCardContext';
 import './styles.css';
 import OrderCard from '../OrderCard';
@@ -13,7 +14,9 @@ function CheckoutMenu() {
         quantityProducts,
         setQuantityProducts,
         count,
-        setCount
+        setCount,
+        order,
+        setOrder,
     } = React.useContext(ShoppingCartContext);
 
     const total = cartProducts.reduce((acc, product) => {
@@ -22,17 +25,7 @@ function CheckoutMenu() {
     }, 0).toFixed(2);
 
     
-    const handleDelete = (id) => {
-        // const filterProducts = cartProducts.filter(product => product.id == id != id);
-        // const quantityToRemove = quantityProducts[id] || 0;
-        // setCartProducts(filterProducts);
-
-        // setCount(prevCount => Math.max(0, prevCount - quantityToRemove));
-        // setQuantityProducts(prevQuantities => {
-        //     const { [id]: _, ...rest } = prevQuantities;
-        //     return rest;
-        // });
-         
+    const handleDelete = (id) => { 
         const updatedCartProducts = cartProducts.filter(product => product.id !== id);
         const quantityToRemove = quantityProducts[id] || 0;
         
@@ -45,6 +38,22 @@ function CheckoutMenu() {
         setCount(prevCount => Math.max(0, prevCount - quantityToRemove));
     }
 
+    const handleCheckout = () => {
+        console.log(`cartProducts ${cartProducts}`)
+        const orderToAdd = {
+            date: '01.02.23',
+            products: cartProducts,
+            totalProducts: cartProducts.length,
+            totalPrice: total,
+        };
+        
+        setOrder([...order, orderToAdd]);
+        console.log(`Order add ${orderToAdd}`);
+        setCartProducts([]);
+        setCount(0);
+        closeCheckoutMenu();
+    }
+
     return (
     <aside className={`${isCheckoutMenuOpen ? 'flex' : 'hidden'} checkout-menu flex-col ml-4 fixed bottom-10 bg-white border border-black rounded-lg lg:right-0 mr-2 `}>
         <div className='flex justify-between items-center px-5 py-3'>
@@ -55,7 +64,7 @@ function CheckoutMenu() {
                 </svg>
             </div>
         </div>
-        <div className='overflow-y-scroll'>
+        <div className='overflow-y-scroll flex-1'>
             {
                 cartProducts.map((products) =>(
                     <OrderCard 
@@ -76,7 +85,13 @@ function CheckoutMenu() {
             <p className='font-bold'>{total} $</p>
         </div>
         <div className='flex flex-col'>
-            <button className='bg-black text-white h-10 rounded-full m-3'>Checkout</button>
+            <Link to='/my-orders/last'
+            className='bg-black text-white h-10 rounded-full m-3 flex justify-center'
+            onClick={() => handleCheckout()}
+            >
+                <button>Checkout</button>
+            </Link>
+           
             <button
              onClick={() => closeCheckoutMenu()} 
              className='rounded-full border border-gray-400 h-10 mx-3 mb-3'>Continue Shopping</button>

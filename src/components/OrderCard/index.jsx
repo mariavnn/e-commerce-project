@@ -4,7 +4,12 @@ import { TrashIcon } from "@heroicons/react/16/solid"
 
 function OrderCard({id, title, price, image, quantity, handleDelete}) {
     const priceTotal = price * quantity;
-  return (
+    let renderDeleteIcon
+    if(handleDelete){
+        renderDeleteIcon = <TrashIcon onClick={() => handleDelete(id)} className="w-7 text-gray-400 hover:text-black"/>
+    }
+
+    return (
     <div className="h-32 flex justify-between items-center mx-3 p-4 mb-2 border-b-2 ">
          <div className="w-1/4">
             <figure>
@@ -20,9 +25,10 @@ function OrderCard({id, title, price, image, quantity, handleDelete}) {
             
             <div className="flex justify-between">
                 <p className="text-gray-400">Qty: {quantity}</p>
-                <TrashIcon onClick={() => handleDelete(id)} className="w-7 text-gray-400 hover:text-black"/>
+                {renderDeleteIcon}
             </div>
         </div>  
+        
     </div>
   )
 }

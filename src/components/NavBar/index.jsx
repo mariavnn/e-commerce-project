@@ -57,7 +57,7 @@ const NavBar = () => {
             </li>
             <li>
                 <NavLink 
-                    to='/my-orders'
+                    to='/my-cart'
                      className={({ isActive }) => isActive ? `flex gap-1.5 ${activeStyles}` : 'flex gap-1.5'}
                     >
                     <svg  width="22px" height="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
