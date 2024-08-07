@@ -20,7 +20,7 @@ function OrderCard({id, title, price, image, quantity, handleDelete}) {
         <div className="w-3/4 pl-4">
             <div className="flex mb-2 justify-between">
                 <p className="text-sm w-3/4 mr-5 font-bold">{title}</p>
-                <span className="w-1/4 font-bold">{priceTotal}</span>
+                <span className="w-1/4 font-bold">{priceTotal}$</span>
             </div>
             
             <div className="flex justify-between">

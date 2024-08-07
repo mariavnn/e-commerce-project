@@ -5,7 +5,8 @@ import MyOrders from '../MyOrders';
 import NotFound from '../NotFound';
 import SignIn from '../SignIn';
 import Search from '../Search';
-import MyCart from '../MyCart';
+import CheckoutMenu from '../../components/CheckoutMenu';
+import MyOrder from '../MyOrder';
 
 
 const AppRoutes = () => {
@@ -13,10 +14,10 @@ const AppRoutes = () => {
         {path: '/', element: <Home/>},
         {path: '/search', element: <Search/>},
         {path: '/my-account', element: <MyAccount/>},
-        {path: '/my-cart', element: <MyCart/>},
-        // {path: '/my-order', element: <MyOrder/>},
+        {path: '/my-cart', element: <CheckoutMenu/>},
+        {path: '/my-order', element: <MyOrder/>},
         {path: '/my-orders', element: <MyOrders/>},
-        // {path: '/my-orders/last', element: <MyOrder/>},
+        {path: '/my-orders/last', element: <MyOrder/>},
         {path: '/sign-in', element: <SignIn/>},
         {path: '/*', element: <NotFound/>},
     ]);
