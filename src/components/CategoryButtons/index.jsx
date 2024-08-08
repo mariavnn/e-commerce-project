@@ -2,39 +2,32 @@
 import { NavLink } from "react-router-dom"
 
 function CategoryButton() {
+    const activeStyle = 'text-amber-500'
   return (
-    <nav>
-        <ul className="flex mb-6 gap-2 w-full h-11">
-            <li>
+    <nav className="w-full h-18 mb-5">
+        <ul className="flex text-black mb-6 w-full gap-5 justify-center items-center font-semibold ">
+            <li className="">
                 <NavLink 
                     to='/electronics'
-                    className='border border-amber-200 rounded-full px-3 py-1'
+                    className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                     Electronics
                 </NavLink>
             </li>
-            <li>
+            <li className="">
                 <NavLink 
                     to='/jewelery'
-                    className='border border-amber-200 rounded-full px-3 py-1'
+                    className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
                     Jewelery
                 </NavLink>
             </li>
-            <li>
+            <li className=" w-16">
                 <NavLink 
-                    to='/men-clothing'
-                    className='border border-amber-200 rounded-full px-3 py-1'
+                    to='/clothing'
+                    className={({ isActive }) => isActive ? activeStyle : undefined}
                     >
-                    Mens Clothing
-                </NavLink>
-            </li>
-            <li>
-                <NavLink 
-                    to='/women-clothing'
-                    className='border border-amber-200 rounded-full px-3 py-1'
-                    >
-                    Womens Clothing
+                    Clothing
                 </NavLink>
             </li>
         </ul>

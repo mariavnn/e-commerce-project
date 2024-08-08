@@ -12,6 +12,9 @@ import MyOrder from '../MyOrder';
 const AppRoutes = () => {
     let routes = useRoutes([
         {path: '/', element: <Home/>},
+        {path: '/electronics', element: <Home/>},
+        {path: '/jewelery', element: <Home/>},
+        {path: '/clothing', element: <Home/>},
         {path: '/search', element: <Search/>},
         {path: '/my-account', element: <MyAccount/>},
         {path: '/my-cart', element: <CheckoutMenu/>},

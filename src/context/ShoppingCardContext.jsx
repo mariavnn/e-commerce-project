@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ShoppingCartContext = React.createContext();
 
@@ -20,6 +20,28 @@ function ShoppingCartProvider({ children }){
     const [order, setOrder] = useState([]);
 
 
+    const [items, setItems] = useState(null);
+  
+    useEffect(() =>{
+        fetch('https://fakestoreapi.com/products')
+                .then(response =>response.json())
+                .then(data=> setItems(data))
+    }, []);
+
+
+    const [searchByTitle, setSearchByTitle] = useState(null);
+    const [filteredItems, setFilteredItems] = useState(null);
+
+    const filteredItemsByTitle = (items, search) => {
+        return items?.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
+    }
+
+    useEffect(() => {
+        if(searchByTitle){
+            setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+        }
+    }, [items, searchByTitle]);
+
     return(
         <ShoppingCartContext.Provider value={{
             count, 
@@ -38,6 +60,13 @@ function ShoppingCartProvider({ children }){
             setQuantityProducts,
             order,
             setOrder,
+            items,
+            setItems,
+            searchByTitle, 
+            setSearchByTitle,
+            filteredItems,
+            setFilteredItems,
+
         }}>
             {children}
         </ShoppingCartContext.Provider>

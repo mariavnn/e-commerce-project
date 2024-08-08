@@ -1,32 +1,13 @@
-import { useState, useEffect } from "react"
+import { useContext } from "react"
 import Card from "../../components/Card"
 import Layout from "../../components/LayOut"
 // import Preview from "../../components/Preview";
 import CategoryButton from "../../components/CategoryButtons";
 import ProductDetail from "../../components/ProductDetail";
+import { ShoppingCartContext } from "../../context/ShoppingCardContext";
 
 function Home() {
-  const [items, setItems] = useState(null);
-  // const [previews, setPreview] = useState(null);
-  // const [categories, setCategories] = useState(null);
-
-  //Get Products for Preview
-  // useEffect(() => {
-  //   fetch('https://fakestoreapi.com/products?limit=1')
-  //   .then(response=>response.json())
-  //   .then(data=>setPreview(data))
-  // }, []);
-
-  // Get All Products
-  useEffect(() =>{
-    fetch('https://fakestoreapi.com/products')
-            .then(response =>response.json())
-            .then(data=> setItems(data))
-  }, []);
-
-  
-  
-
+  const { items } = useContext(ShoppingCartContext);
   return (
     <Layout>
       {/* <div>
