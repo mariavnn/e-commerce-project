@@ -12,8 +12,9 @@ function MyOrders() {
       <div className="w-96 px-2 flex flex-col justify-center">
         {
           order.map((order, index) => (
-            <Link key={index} to={`/my-orders/${order.id}`}>
+            <Link key={index} to={`/my-orders/${index}`}>
               <OrdersCard 
+              id={order.id}
               date={order.date}
               totalPrice={order.totalPrice} 
               totalProducts={order.totalProducts}

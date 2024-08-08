@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
 
-function OrdersCard({ date, totalPrice, totalProducts}) {
+function OrdersCard({ id, date, totalPrice, totalProducts}) {
     console.log(`total Price ${totalPrice}`);
     console.log(`total Products ${totalProducts}`)
   return (
     <div className='border flex justify-between rounded-lg mt-2 mx-2 py-3 px-4'>
         <div className="flex flex-col gap-3 w-3/5">
+            <div>
+                <p className="text-lg font-semibold text-gray-500/70">Order Id</p>
+                <span className="font-bold">{id}</span>
+            </div>
             <div>
                 <p className="text-lg font-semibold text-gray-500/70">Date</p>
                 <span className="font-bold">{date}</span>

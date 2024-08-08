@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import { ShoppingCartContext } from '../../context/ShoppingCardContext';
 import './styles.css';
@@ -41,6 +42,7 @@ function CheckoutMenu() {
     const handleCheckout = () => {
         console.log(`cartProducts ${cartProducts}`)
         const orderToAdd = {
+            id: uuidv4(),
             date: '01.02.23',
             products: cartProducts,
             totalProducts: cartProducts.length,
