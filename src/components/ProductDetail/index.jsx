@@ -3,11 +3,43 @@ import React from 'react';
 import './styles.css';
 
 function ProductDetail() {
-    const {isProductDetailOpen, closeProductDetail, productToShow, count, setCount} = React.useContext(ShoppingCartContext);
+    const {
+        isProductDetailOpen, 
+        closeProductDetail, 
+        productToShow, 
+        count, 
+        setCount, 
+        cartProducts,
+        setCartProducts,
+        quantityProducts,
+        setQuantityProducts
+    } = React.useContext(ShoppingCartContext);
+
+    const addProductToCart = (productData) => {
+        event.stopPropagation();
+
+        const productIndex = cartProducts.findIndex(product => product.id === productData.id);
+        let newCart = [...cartProducts];
+    
+        if (productIndex >= 0) {
+            const updatedProduct = { ...newCart[productIndex], quantity: (quantityProducts[productData.id] || 1) + 1 };
+            newCart[productIndex] = updatedProduct;
+        } else {
+            newCart = [...cartProducts, { ...productData, quantity: 1 }];
+        }
+    
+        setCartProducts(newCart);
+        setQuantityProducts(prevQuantities => ({
+            ...prevQuantities,
+            [productData.id]: (prevQuantities[productData.id] || 0) + 1
+        }));
+        
+        setCount(count + 1);
+    }
     
   return (
    
-   <aside className={`${isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex-col fixed bottom-10 bg-white border border-black rounded-lg lg:right-0 mr-2`}>
+    <aside className={`${isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex-col fixed bottom-10 bg-white border border-black rounded-lg lg:right-0 mr-2`}>
         <div className='flex justify-between items-center px-5 py-3'>
             <h2 className='font-bold text-2xl'>Product Detail</h2>
             <div onClick={() => closeProductDetail()}>
@@ -28,7 +60,7 @@ function ProductDetail() {
        
         <button 
             className="text-lg text-white font-bold bg-black rounded-full h-10 flex justify-center items-center px-3 mx-4 " 
-            onClick={() => setCount(count + 1)}
+            onClick={() => addProductToCart(productToShow)}
         >Add to the shopping cart</button>
    </aside>
   )

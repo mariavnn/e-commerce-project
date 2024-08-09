@@ -17,6 +17,7 @@ function Card({ data }) {
         setQuantityProducts,
         favoriteProducts,
         setFavoriteProducts,
+        closeCheckoutMenu,
     } = React.useContext(ShoppingCartContext);
     const [iconChanged, setIconChange] = React.useState(false);
 
@@ -25,6 +26,7 @@ function Card({ data }) {
 
     const showProduct = (productInfo) => {
         openProductDetail();
+        closeCheckoutMenu();
         setProductToShow(productInfo);
     }
 
