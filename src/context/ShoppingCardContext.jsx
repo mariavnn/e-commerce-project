@@ -6,6 +6,7 @@ const ShoppingCartContext = React.createContext();
 function ShoppingCartProvider({ children }){
     const [count, setCount] = useState(0);
     const [cartProducts, setCartProducts] = useState([]);
+    const [favoriteProducts, setFavoriteProducts] = useState([]);
     const [productToShow, setProductToShow] = useState({})
     const [quantityProducts, setQuantityProducts] = useState({});
 
@@ -83,7 +84,9 @@ function ShoppingCartProvider({ children }){
             setFilteredItems,
             searchByCategory,
             setSearchByCategory,
-            filteredItemsByCategory
+            filteredItemsByCategory,
+            favoriteProducts,
+            setFavoriteProducts,
         }}>
             {children}
         </ShoppingCartContext.Provider>

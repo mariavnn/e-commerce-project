@@ -34,7 +34,7 @@ const NavBar = () => {
             </li>
             <li className='hidden lg:block'>
                 <NavLink 
-                    to='/favorite'
+                    to='/favorites'
                     className={({ isActive }) => isActive ? `flex gap-1.5 ${activeStyles}` : 'flex gap-1.5'}
                     >
                     <svg fill="#000000" height="22px" width="22px" version="1.1" id="XMLID_298_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >

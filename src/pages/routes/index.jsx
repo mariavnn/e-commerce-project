@@ -7,6 +7,7 @@ import SignIn from '../SignIn';
 import Search from '../Search';
 import CheckoutMenu from '../../components/CheckoutMenu';
 import MyOrder from '../MyOrder';
+import FavoriteProducts from '../Favorite';
 
 
 const AppRoutes = () => {
@@ -23,6 +24,7 @@ const AppRoutes = () => {
         {path: '/my-orders/last', element: <MyOrder/>},
         {path: '/my-orders/:id', element: <MyOrder/>},
         {path: '/sign-in', element: <SignIn/>},
+        {path: '/favorites', element: <FavoriteProducts/>},
         {path: '/*', element: <NotFound/>},
     ]);
     return routes;
