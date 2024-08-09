@@ -21,26 +21,41 @@ function ShoppingCartProvider({ children }){
 
 
     const [items, setItems] = useState(null);
-  
+
+    //Get all Products
     useEffect(() =>{
         fetch('https://fakestoreapi.com/products')
                 .then(response =>response.json())
                 .then(data=> setItems(data))
     }, []);
 
+    
 
+    //Search By Title
     const [searchByTitle, setSearchByTitle] = useState(null);
     const [filteredItems, setFilteredItems] = useState(null);
 
-    const filteredItemsByTitle = (items, search) => {
-        return items?.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter((item) => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
+    
+    //Search By Category
+    const [searchByCategory, setSearchByCategory] = useState(null);
+
+    const filteredItemsByCategory = (items, searchByCategory) => {
+        return items?.filter((item) => item.category.toLowerCase().includes(searchByCategory.toLowerCase()))
+    }
+   
 
     useEffect(() => {
-        if(searchByTitle){
-            setFilteredItems(filteredItemsByTitle(items, searchByTitle))
-        }
-    }, [items, searchByTitle]);
+        if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+        if (searchByCategory) setFilteredItems(filteredItemsByCategory(items, searchByCategory))
+    }, [items, searchByTitle, searchByCategory]);
+
+    console.log('SearchByCategory', searchByCategory);
+    console.log('Items', items);
+    console.log('FilteredItems', filteredItems);
+
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -66,7 +81,9 @@ function ShoppingCartProvider({ children }){
             setSearchByTitle,
             filteredItems,
             setFilteredItems,
-
+            searchByCategory,
+            setSearchByCategory,
+            filteredItemsByCategory
         }}>
             {children}
         </ShoppingCartContext.Provider>

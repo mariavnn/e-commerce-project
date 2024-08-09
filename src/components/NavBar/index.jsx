@@ -4,7 +4,7 @@ import { ShoppingCartContext } from "../../context/ShoppingCardContext";
 
 const NavBar = () => {
     let activeStyles = 'underline underline-offset-4';
-    const {count, openCheckoutMenu} = useContext(ShoppingCartContext);
+    const {items, count, openCheckoutMenu, setFilteredItems } = useContext(ShoppingCartContext);
 
   return (
     <nav className="flex justify-between items-center fixed top-0 w-full py-1 px-3 mt-3 pb-2">
@@ -12,6 +12,7 @@ const NavBar = () => {
             <li className="text-3xl font-bold text-amber-500 ">
                 <NavLink 
                     to='/'
+                    onClick={() => setFilteredItems(items)}
                     >
                     Shopi
                 </NavLink>
