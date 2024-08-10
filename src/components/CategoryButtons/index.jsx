@@ -9,7 +9,7 @@ function CategoryButton() {
 
     return (
     <nav className="w-full h-18">
-        <ul className="flex text-black text-lg mb-10 px-10 w-full gap-5 justify-between items-center font-semibold ">
+        <ul className="flex text-black text-lg mb-10 px-10 w-full gap-5 justify-between items-center font-semibold lg:justify-center lg:gap-32">
             <li className="hover:text-amber-400 transition-transform duration-200 hover:scale-105">
                 <NavLink 
                     to='/electronics'

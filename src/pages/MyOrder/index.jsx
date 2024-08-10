@@ -23,7 +23,7 @@ function MyOrder() {
         <p className="text-xl font-bold items-start mb-3 w-full px-4">My Order</p>
       </div>
       
-      <div className='flex flex-col h-96 mb-5 overflow-y-scroll'>
+      <div className='flex flex-col h-96 mb-5 overflow-y-scroll p-3 w-11/12'>
         {
           order?.[index]?.products.map((products) =>(
             <OrderCard
@@ -39,12 +39,12 @@ function MyOrder() {
 
         }
       </div>
-      <div className="w-full flex flex-col gap-4 px-3">
-        <div className='flex justify-between mx-4'>
-            <p className='text-lg'>Total</p>
-            <p className='font-bold'>{order[index]?.totalPrice} $</p>
-        </div>
+     
+      <div className='w-11/12 flex justify-between mt-3 '>
+        <p className='text-lg lg:text-xl'>Total</p>
+        <p className='font-bold lg:text-lg'>{order[index]?.totalPrice} $</p>
       </div>
+      
      
     </Layout>
   )

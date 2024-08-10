@@ -48,20 +48,19 @@ function ProductDetail() {
                 </svg>
             </div>
         </div>
-        <figure className=' m-2 flex flex-col justify-center items-center'>
-            <div className='w-80 h-72 mb-2 lg:h-80'>
-                <img className='w-full h-full object-fill' src={productToShow.image} alt={productToShow.title} />
-            </div>
-            <div className='flex p-2 gap-12 h-20 mt-5 mb-2 w-full lg:mt-2 lg:h-20'>
-                <h1 className='w-4/6 '>{productToShow.title}</h1>
-                <span  className="text-lg font-bold bg-amber-400/50 rounded-full h-10 flex justify-center items-center px-3">{productToShow.price}$</span>
-            </div>   
-        </figure>
-       
-        <button 
-            className="text-lg text-white font-bold bg-black rounded-full h-10 flex justify-center items-center px-3 mx-4 " 
-            onClick={() => addProductToCart(productToShow)}
-        >Add to the shopping cart</button>
+        <figure className="mb-3 w-full h-2/4 px-16 flex justify-center items-center mt-2">
+            <img className="w-full h-full object-fill rounded-lg" src={productToShow.image} alt={productToShow.title}></img>
+        </figure> 
+        <div className='h-32 flex px-3 gap-5'>
+            <h1 className='w-4/6 '>{productToShow.title}</h1>
+            <span  className="text-lg font-bold bg-amber-400/50 rounded-full h-10 flex justify-center items-center px-3">{productToShow.price}$</span>
+        </div>
+        <div className='flex flex-1 items-center'>
+            <button 
+                className="text-lg flex w-full text-white font-bold bg-black rounded-full h-10 justify-center items-center px-3 mx-4" 
+                onClick={() => addProductToCart(productToShow)}
+            >Add to the shopping cart</button> 
+        </div>
    </aside>
   )
 }
