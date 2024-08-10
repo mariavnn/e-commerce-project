@@ -6,14 +6,12 @@ import { Link } from "react-router-dom";
 
 
 function MyOrder() {
-  const { order, quantityProducts } = React.useContext(ShoppingCartContext);
-  console.log('order', order)
+  const { order } = React.useContext(ShoppingCartContext);
+  
   const currentPath = window.location.pathname;
-  console.log('currentPath', currentPath);
   let index = currentPath.substring(currentPath.lastIndexOf('/') + 1);
   if (index === 'last') index = order?.length - 1;
-  console.log('index my order', index);
-
+  
   return (
     <Layout>
       <div className="flex">
@@ -22,10 +20,10 @@ function MyOrder() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
         </Link>
-        <p className="text-xl font-bold items-start mb-3 w-full px-4">Checkout Order</p>
+        <p className="text-xl font-bold items-start mb-3 w-full px-4">My Order</p>
       </div>
       
-      <div className='flex flex-col'>
+      <div className='flex flex-col h-96 mb-5 overflow-y-scroll'>
         {
           order?.[index]?.products.map((products) =>(
             <OrderCard
@@ -34,12 +32,18 @@ function MyOrder() {
               title={products.title} 
               price={products.price} 
               image={products.image}
-              quantity={quantityProducts[products.id] || 0}
+              quantity={products.quantity}
             />
             
           ))
 
         }
+      </div>
+      <div className="w-full flex flex-col gap-4 px-3">
+        <div className='flex justify-between mx-4'>
+            <p className='text-lg'>Total</p>
+            <p className='font-bold'>{order[index]?.totalPrice} $</p>
+        </div>
       </div>
      
     </Layout>

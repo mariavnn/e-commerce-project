@@ -6,6 +6,7 @@ const ShoppingCartContext = React.createContext();
 function ShoppingCartProvider({ children }){
     const [count, setCount] = useState(0);
     const [cartProducts, setCartProducts] = useState([]);
+    const [total, setTotal] = useState(null);
     const [favoriteProducts, setFavoriteProducts] = useState([]);
     const [productToShow, setProductToShow] = useState({})
     const [quantityProducts, setQuantityProducts] = useState({});
@@ -53,10 +54,15 @@ function ShoppingCartProvider({ children }){
         if (searchByCategory) setFilteredItems(filteredItemsByCategory(items, searchByCategory))
     }, [items, searchByTitle, searchByCategory]);
 
-    console.log('SearchByCategory', searchByCategory);
-    console.log('Items', items);
-    console.log('FilteredItems', filteredItems);
-
+    useEffect(() => {
+        const newTotal = cartProducts.reduce((acc, product) => {
+            const quantity = quantityProducts[product.id] || 0;
+            return acc + (product.price * quantity);
+        }, 0).toFixed(2);
+    
+        setTotal(newTotal);
+    }, [order, cartProducts, quantityProducts]);
+    
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -87,6 +93,7 @@ function ShoppingCartProvider({ children }){
             filteredItemsByCategory,
             favoriteProducts,
             setFavoriteProducts,
+            total
         }}>
             {children}
         </ShoppingCartContext.Provider>

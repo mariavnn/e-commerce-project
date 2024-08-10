@@ -8,9 +8,9 @@ function CategoryButton() {
     const { setSearchByCategory } = useContext(ShoppingCartContext);
 
     return (
-    <nav className="w-full h-18 mb-5">
-        <ul className="flex text-black mb-6 w-full gap-5 justify-center items-center font-semibold ">
-            <li className="">
+    <nav className="w-full h-18">
+        <ul className="flex text-black text-lg mb-10 px-10 w-full gap-5 justify-between items-center font-semibold ">
+            <li className="hover:text-amber-400 transition-transform duration-200 hover:scale-105">
                 <NavLink 
                     to='/electronics'
                     className={({ isActive }) => isActive ? activeStyle : undefined}
@@ -19,7 +19,7 @@ function CategoryButton() {
                     Electronics
                 </NavLink>
             </li>
-            <li className="">
+            <li className="hover:text-amber-400 transition-transform duration-200 hover:scale-105">
                 <NavLink 
                     to='/jewelery'
                     className={({ isActive }) => isActive ? activeStyle : undefined}
@@ -28,7 +28,7 @@ function CategoryButton() {
                     Jewelery
                 </NavLink>
             </li>
-            <li className=" w-16">
+            <li className=" w-16 hover:text-amber-400 transition-transform duration-200 hover:scale-105">
                 <NavLink 
                     to='/clothing'
                     className={({ isActive }) => isActive ? activeStyle : undefined}

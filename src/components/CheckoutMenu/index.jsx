@@ -25,7 +25,6 @@ function CheckoutMenu() {
         return acc + (product.price * quantity);
     }, 0).toFixed(2);
 
-    
     const handleDelete = (id) => { 
         const updatedCartProducts = cartProducts.filter(product => product.id !== id);
         const quantityToRemove = quantityProducts[id] || 0;
@@ -40,7 +39,6 @@ function CheckoutMenu() {
     }
 
     const handleCheckout = () => {
-        console.log(`cartProducts ${cartProducts}`)
         const orderToAdd = {
             id: uuidv4(),
             date: '01.02.23',
@@ -50,8 +48,8 @@ function CheckoutMenu() {
         };
         
         setOrder([...order, orderToAdd]);
-        console.log(`Order add ${orderToAdd}`);
         setCartProducts([]);
+        setQuantityProducts({});
         setCount(0);
         closeCheckoutMenu();
     }
