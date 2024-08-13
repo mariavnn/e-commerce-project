@@ -5,6 +5,7 @@ const ShoppingCartContext = React.createContext();
 
 function ShoppingCartProvider({ children }){
     const [count, setCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [cartProducts, setCartProducts] = useState(() => {
         const storedCartProducts = localStorage.getItem('cartProducts');
@@ -37,8 +38,11 @@ function ShoppingCartProvider({ children }){
     //Get all Products
     useEffect(() =>{
         fetch('https://fakestoreapi.com/products')
-                .then(response =>response.json())
-                .then(data=> setItems(data))
+                .then((response) =>response.json())
+                .then((data) => {
+                    setItems(data);
+                    setIsLoading(false);
+                })
     }, []);
 
     
@@ -80,6 +84,8 @@ function ShoppingCartProvider({ children }){
 
     return(
         <ShoppingCartContext.Provider value={{
+            isLoading,
+            setIsLoading,
             count, 
             setCount,
             isProductDetailOpen,

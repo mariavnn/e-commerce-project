@@ -124,8 +124,8 @@ function Card({ data }) {
     }
    
     return (
-    <div className="bg-white cursor-pointer w-56 h-68 rounded-lg mb-10 "  onClick={() => showProduct(data)}>
-        <figure className="relative mb-3 w-full h-4/5">
+    <div className=" cursor-pointer w-56 h-68 rounded-lg mb-10 "  onClick={() => showProduct(data)}>
+       <figure className="relative mb-3 w-full h-4/5">
             <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-1.5 py-0.5">{data.category}</span>
             <img className="w-full h-full object-cover rounded-lg" src={data.image} alt={data.title}></img>
            {/* ADD FAVORITE */}
@@ -138,10 +138,9 @@ function Card({ data }) {
                 {/* ADD ITEM TO THE SHOPPING CARD */}
                 {renderIcon(data.id)}
             </div>
-            
             <span className="text-lg font-bold bg-amber-400/50 rounded-full px-3">{data.price}$</span>
         </p>
-      
+        
     </div>
   )
 }

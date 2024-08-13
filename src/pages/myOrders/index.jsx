@@ -9,7 +9,7 @@ function MyOrders() {
   return (
     <Layout>
       <p className="w-full px-5 font-semibold text-xl mb-2">My Orders</p>
-      <div className=" px-2 flex flex-col justify-center lg:w-full">
+      <div className="mb-16 px-2 flex flex-col justify-center lg:w-full">
         {
           order.map((order, index) => (
             <Link key={index} to={`/my-orders/${index}`}>
