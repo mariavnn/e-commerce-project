@@ -5,6 +5,7 @@ import Layout from "../../components/LayOut"
 import CategoryButton from "../../components/CategoryButtons";
 import ProductDetail from "../../components/ProductDetail";
 import { ShoppingCartContext } from "../../context/ShoppingCardContext";
+import Footer from '../../components/Footer';
 
 function Home() {
   const { items, filteredItems } = useContext(ShoppingCartContext);
@@ -22,6 +23,7 @@ function Home() {
         }
       </div>
       <ProductDetail/>
+      <Footer/>
     </Layout>
   )
 }
