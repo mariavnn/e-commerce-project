@@ -5,9 +5,22 @@ const ShoppingCartContext = React.createContext();
 
 function ShoppingCartProvider({ children }){
     const [count, setCount] = useState(0);
-    const [cartProducts, setCartProducts] = useState([]);
-    const [total, setTotal] = useState(null);
-    const [favoriteProducts, setFavoriteProducts] = useState([]);
+
+    const [cartProducts, setCartProducts] = useState(() => {
+        const storedCartProducts = localStorage.getItem('cartProducts');
+        return storedCartProducts ? JSON.parse(storedCartProducts) : [];
+    });
+
+    const [favoriteProducts, setFavoriteProducts] = useState(() => {
+        const storedFavoriteProducts = localStorage.getItem('favoriteProducts');
+        return storedFavoriteProducts ? JSON.parse(storedFavoriteProducts) : [];
+    });
+
+    const [order, setOrder] = useState(() => {
+        const storedOrder = localStorage.getItem('order');
+        return storedOrder ? JSON.parse(storedOrder) : [];
+    });
+   
     const [productToShow, setProductToShow] = useState({})
     const [quantityProducts, setQuantityProducts] = useState({});
 
@@ -18,9 +31,6 @@ function ShoppingCartProvider({ children }){
     const [isCheckoutMenuOpen, setIsCheckoutMenuOpen] = useState(false);
     const openCheckoutMenu = () => setIsCheckoutMenuOpen(true);
     const closeCheckoutMenu = () => setIsCheckoutMenuOpen(false);
-
-    const [order, setOrder] = useState([]);
-
 
     const [items, setItems] = useState(null);
 
@@ -53,16 +63,20 @@ function ShoppingCartProvider({ children }){
         if (searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle));
         if (searchByCategory) setFilteredItems(filteredItemsByCategory(items, searchByCategory))
     }, [items, searchByTitle, searchByCategory]);
+    
+
+    //Guardar Local Storage
+     useEffect(() => {
+        localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+    }, [cartProducts]);
 
     useEffect(() => {
-        const newTotal = cartProducts.reduce((acc, product) => {
-            const quantity = quantityProducts[product.id] || 0;
-            return acc + (product.price * quantity);
-        }, 0).toFixed(2);
-    
-        setTotal(newTotal);
-    }, [order, cartProducts, quantityProducts]);
-    
+        localStorage.setItem('favoriteProducts', JSON.stringify(favoriteProducts));
+    }, [favoriteProducts]);
+
+    useEffect(() => {
+        localStorage.setItem('order', JSON.stringify(order));
+    }, [order]);
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -93,7 +107,6 @@ function ShoppingCartProvider({ children }){
             filteredItemsByCategory,
             favoriteProducts,
             setFavoriteProducts,
-            total
         }}>
             {children}
         </ShoppingCartContext.Provider>

@@ -68,7 +68,7 @@ function Card({ data }) {
         setIconChange(true);
         setTimeout(() => {
             setIconChange(false);
-        }, 4000);
+        }, 2000);
     }
 
 
